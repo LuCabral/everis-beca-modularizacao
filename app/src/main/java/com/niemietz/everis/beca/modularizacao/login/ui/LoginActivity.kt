@@ -14,12 +14,12 @@ import br.com.becaeveris.library.constants.LoginConstants.EXTRA_ERROR_KEY
 import br.com.becaeveris.library.constants.LoginConstants.EXTRA_RESULT_KEY
 import br.com.becaeveris.library.constants.LoginConstants.LOGIN_RESULT_CODE
 import com.niemietz.everis.beca.core.com.niemietz.everis.beca.modularizacao.login.textwatcher.LoginTextWatcher
-import com.niemietz.everis.beca.modularizacao.login.events.LoginEvents
-import com.niemietz.everis.beca.modularizacao.login.events.LoginInteractor
+import br.com.becaeveris.library.events.LoginEvents
+import br.com.becaeveris.library.events.LoginInteractor
 import br.com.becaeveris.library.model.KeyboardItem
 import com.niemietz.everis.beca.modularizacao.login.states.LoginStates
 import com.niemietz.everis.beca.modularizacao.R
-import com.niemietz.everis.beca.modularizacao.login.interfaces.LoginAPI
+import br.com.becaeveris.library.interfaces.LoginAPI
 import com.niemietz.everis.beca.modularizacao.login.repository.LoginRepository
 import com.niemietz.everis.beca.modularizacao.login.ui.viewmodel.LoginViewModel
 import com.niemietz.everis.beca.modularizacao.login.ui.viewmodel.LoginViewModelFactory
@@ -53,7 +53,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun initViewModel() {
-        val api = BackendClient.api(LoginAPI::class.java)
+        val api = BackendClient.api(br.com.becaeveris.library.interfaces.LoginAPI::class.java)
         val repository = LoginRepository(api)
 
         viewModel = ViewModelProvider(
@@ -68,8 +68,8 @@ class LoginActivity : AppCompatActivity() {
     private fun initEventsObservers() {
         viewModel.events.observe(this, {
             when(it) {
-                is LoginEvents.StartLoading -> showLoading(true)
-                is LoginEvents.NoInternet -> Toast.makeText(
+                is br.com.becaeveris.library.events.LoginEvents.StartLoading -> showLoading(true)
+                is br.com.becaeveris.library.events.LoginEvents.NoInternet -> Toast.makeText(
                     this,
                     CHECK_YOUR_CONNECTION_WARNING,
                     Toast.LENGTH_LONG
@@ -114,11 +114,11 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun getKeyboard() {
-        viewModel.interact(LoginInteractor.GetSession)
+        viewModel.interact(br.com.becaeveris.library.events.LoginInteractor.GetSession)
     }
 
     private fun realizeLogin(password: String) {
-        viewModel.interact(LoginInteractor.Authenticate(password))
+        viewModel.interact(br.com.becaeveris.library.events.LoginInteractor.Authenticate(password))
     }
 
     private fun setKeyboard(keyboard: ArrayList<br.com.becaeveris.library.model.KeyboardItem>) {

@@ -7,8 +7,8 @@ import androidx.lifecycle.ViewModel
 import com.google.gson.Gson
 import com.niemietz.everis.beca.core.InternetChecker.isConnected2Internet
 import com.niemietz.everis.beca.core.Session
-import com.niemietz.everis.beca.modularizacao.login.events.LoginEvents
-import com.niemietz.everis.beca.modularizacao.login.events.LoginInteractor
+import br.com.becaeveris.library.events.LoginEvents
+import br.com.becaeveris.library.events.LoginInteractor
 import com.niemietz.everis.beca.modularizacao.login.states.LoginStates
 import com.niemietz.everis.beca.modularizacao.login.repository.LoginRepository
 import br.com.becaeveris.library.model.AuthenticateRequest
@@ -29,19 +29,19 @@ class LoginViewModel(
     private val job: Job = Job()
     private val currentJob: CoroutineContext =
         Dispatchers.Main + job
-    val events = MutableLiveData<LoginEvents>()
+    val events = MutableLiveData<br.com.becaeveris.library.events.LoginEvents>()
     val states = MutableLiveData<LoginStates>()
 
-    fun interact(interaction: LoginInteractor) {
+    fun interact(interaction: br.com.becaeveris.library.events.LoginInteractor) {
         when (interaction) {
-            is LoginInteractor.GetSession -> getSession()
-            is LoginInteractor.Authenticate -> authenticate(interaction.password)
+            is br.com.becaeveris.library.events.LoginInteractor.GetSession -> getSession()
+            is br.com.becaeveris.library.events.LoginInteractor.Authenticate -> authenticate(interaction.password)
         }
     }
 
     private fun getSession() {
         if (isConnected2Internet(context)) {
-            events.value = LoginEvents.StartLoading
+            events.value = br.com.becaeveris.library.events.LoginEvents.StartLoading
 
             CoroutineScope(currentJob).launch {
                 try {
@@ -66,13 +66,13 @@ class LoginViewModel(
                 }
             }
         } else {
-            events.value = LoginEvents.NoInternet
+            events.value = br.com.becaeveris.library.events.LoginEvents.NoInternet
         }
     }
 
     private fun authenticate(password: String) {
         if (isConnected2Internet(context)) {
-            events.value = LoginEvents.StartLoading
+            events.value = br.com.becaeveris.library.events.LoginEvents.StartLoading
 
             CoroutineScope(currentJob).launch {
                 try {
@@ -92,14 +92,14 @@ class LoginViewModel(
                             response.result
                         )
                     } ?: run {
-                        events.value = LoginEvents.NoSession
+                        events.value = br.com.becaeveris.library.events.LoginEvents.NoSession
                     }
                 } catch (ex: Exception) {
                     states.value = LoginStates.GetSessionError(ex)
                 }
             }
         } else {
-            events.value = LoginEvents.NoInternet
+            events.value = br.com.becaeveris.library.events.LoginEvents.NoInternet
         }
     }
 

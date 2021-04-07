@@ -1,4 +1,4 @@
-package com.niemietz.everis.beca.modularizacao.login.interfaces
+package br.com.becaeveris.library.interfaces
 
 import br.com.becaeveris.library.constants.APIConstants.AUTHENTICATE
 import br.com.becaeveris.library.constants.APIConstants.GET_SESSION
