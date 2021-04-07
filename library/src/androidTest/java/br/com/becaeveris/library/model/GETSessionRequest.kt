@@ -1,4 +1,4 @@
-package com.niemietz.everis.beca.modularizacao.login.model
+package br.com.becaeveris.library.model
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName

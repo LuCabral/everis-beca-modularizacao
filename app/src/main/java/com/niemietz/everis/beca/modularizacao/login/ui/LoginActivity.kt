@@ -16,7 +16,7 @@ import br.com.becaeveris.library.constants.LoginConstants.LOGIN_RESULT_CODE
 import com.niemietz.everis.beca.core.com.niemietz.everis.beca.modularizacao.login.textwatcher.LoginTextWatcher
 import com.niemietz.everis.beca.modularizacao.login.events.LoginEvents
 import com.niemietz.everis.beca.modularizacao.login.events.LoginInteractor
-import com.niemietz.everis.beca.modularizacao.login.model.KeyboardItem
+import br.com.becaeveris.library.model.KeyboardItem
 import com.niemietz.everis.beca.modularizacao.login.states.LoginStates
 import com.niemietz.everis.beca.modularizacao.R
 import com.niemietz.everis.beca.modularizacao.login.interfaces.LoginAPI
@@ -121,7 +121,7 @@ class LoginActivity : AppCompatActivity() {
         viewModel.interact(LoginInteractor.Authenticate(password))
     }
 
-    private fun setKeyboard(keyboard: ArrayList<KeyboardItem>) {
+    private fun setKeyboard(keyboard: ArrayList<br.com.becaeveris.library.model.KeyboardItem>) {
         keyboard.forEach { item ->
             item.numbers.forEach { number ->
                 val btn = when (number) {

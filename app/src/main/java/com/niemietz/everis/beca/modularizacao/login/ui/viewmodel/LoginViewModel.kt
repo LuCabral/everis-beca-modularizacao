@@ -11,9 +11,9 @@ import com.niemietz.everis.beca.modularizacao.login.events.LoginEvents
 import com.niemietz.everis.beca.modularizacao.login.events.LoginInteractor
 import com.niemietz.everis.beca.modularizacao.login.states.LoginStates
 import com.niemietz.everis.beca.modularizacao.login.repository.LoginRepository
-import com.niemietz.everis.beca.modularizacao.login.model.AuthenticateRequest
-import com.niemietz.everis.beca.modularizacao.login.model.AuthenticateResponseContent
-import com.niemietz.everis.beca.modularizacao.login.model.GETSessionRequest
+import br.com.becaeveris.library.model.AuthenticateRequest
+import br.com.becaeveris.library.model.AuthenticateResponseContent
+import br.com.becaeveris.library.model.GETSessionRequest
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -51,7 +51,7 @@ class LoginViewModel(
                     )
 
                     val response = repository.getSession(
-                        GETSessionRequest(
+                        br.com.becaeveris.library.model.GETSessionRequest(
                             deviceId
                         )
                     )
@@ -80,7 +80,7 @@ class LoginViewModel(
                         val sessionId = it
 
                         val response = repository.authenticate(
-                            AuthenticateRequest(
+                            br.com.becaeveris.library.model.AuthenticateRequest(
                                 sessionId,
                                 password
                             )
@@ -107,7 +107,7 @@ class LoginViewModel(
         Session.id = sessionId
     }
 
-    private fun setCoreUserContent(userContent: AuthenticateResponseContent) {
+    private fun setCoreUserContent(userContent: br.com.becaeveris.library.model.AuthenticateResponseContent) {
         Session.content = JSONObject(Gson().toJson(userContent))
     }
 }
