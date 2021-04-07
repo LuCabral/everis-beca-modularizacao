@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Modularizacao Login</string>
-
     <string name="go_to_login">Fazer login</string>
     <string name="password">senha:</string>
     <string name="button_0_or_1">0 ou 1</string>
