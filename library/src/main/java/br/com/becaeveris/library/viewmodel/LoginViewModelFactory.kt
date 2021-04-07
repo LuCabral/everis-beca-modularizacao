@@ -1,14 +1,13 @@
-package com.niemietz.everis.beca.modularizacao.login.ui.viewmodel
+package br.com.becaeveris.library.viewmodel
 
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.niemietz.everis.beca.modularizacao.login.repository.LoginRepository
 import java.lang.IllegalArgumentException
 
 class LoginViewModelFactory(
     private val context: Context,
-    private val repository: LoginRepository,
+    private val repository: br.com.becaeveris.library.repository.LoginRepository,
     private val checkInternetConnection: Boolean = true
 ): ViewModelProvider.NewInstanceFactory() {
     override fun <T : ViewModel> create(modelClass: Class<T>): T =

@@ -9,7 +9,7 @@ import androidx.appcompat.widget.AppCompatButton
 import br.com.becaeveris.library.constants.LoginConstants
 import com.niemietz.everis.beca.modularizacao.BuildConfig
 import com.niemietz.everis.beca.modularizacao.R
-import com.niemietz.everis.beca.modularizacao.login.ui.LoginActivity
+import br.com.becaeveris.library.viewmodel.LoginActivity
 
 class MainActivity : AppCompatActivity() {
     private val btLogin: AppCompatButton by lazy { findViewById(R.id.bt_login) }
@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setListener() {
         btLogin.setOnClickListener {
-            val loginIntent = Intent(this, LoginActivity::class.java)
+            val loginIntent = Intent(this, br.com.becaeveris.library.viewmodel.LoginActivity::class.java)
             startActivityForResult(loginIntent, LOGIN_REQUEST_CODE)
         }
     }

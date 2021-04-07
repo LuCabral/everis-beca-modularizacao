@@ -1,4 +1,4 @@
-package com.niemietz.everis.beca.core.com.niemietz.everis.beca.modularizacao.login.textwatcher
+package br.com.becaeveris.library.textwatcher
 
 import android.text.Editable
 import android.text.TextWatcher

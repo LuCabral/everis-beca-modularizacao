@@ -1,4 +1,4 @@
-package com.niemietz.everis.beca.modularizacao.login.repository
+package br.com.becaeveris.library.repository
 
 import br.com.becaeveris.library.interfaces.LoginAPI
 import br.com.becaeveris.library.model.AuthenticateRequest

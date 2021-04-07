@@ -1,28 +1,19 @@
-package com.niemietz.everis.beca.modularizacao.login.ui
+package br.com.becaeveris.library.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.Group
 import androidx.lifecycle.ViewModelProvider
-import com.niemietz.everis.beca.core.BackendClient
+import br.com.becaeveris.library.R
 import br.com.becaeveris.library.constants.LoginConstants.EXTRA_ERROR_KEY
 import br.com.becaeveris.library.constants.LoginConstants.EXTRA_RESULT_KEY
 import br.com.becaeveris.library.constants.LoginConstants.LOGIN_RESULT_CODE
-import com.niemietz.everis.beca.core.com.niemietz.everis.beca.modularizacao.login.textwatcher.LoginTextWatcher
-import br.com.becaeveris.library.events.LoginEvents
-import br.com.becaeveris.library.events.LoginInteractor
-import br.com.becaeveris.library.model.KeyboardItem
-import br.com.becaeveris.library.states.LoginStates
-import com.niemietz.everis.beca.modularizacao.R
-import br.com.becaeveris.library.interfaces.LoginAPI
-import com.niemietz.everis.beca.modularizacao.login.repository.LoginRepository
-import com.niemietz.everis.beca.modularizacao.login.ui.viewmodel.LoginViewModel
-import com.niemietz.everis.beca.modularizacao.login.ui.viewmodel.LoginViewModelFactory
+import com.niemietz.everis.beca.core.BackendClient
 
 class LoginActivity : AppCompatActivity() {
     private val etPassword: AppCompatEditText by lazy { findViewById(R.id.et_password) }
@@ -36,7 +27,7 @@ class LoginActivity : AppCompatActivity() {
     private val clLoadingBackground: ConstraintLayout by lazy { findViewById(R.id.cl_loading_background) }
     private val gpLoading: Group by lazy { findViewById(R.id.gp_loading) }
 
-    private lateinit var viewModel: LoginViewModel
+    private lateinit var viewModel: br.com.becaeveris.library.viewmodel.LoginViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,15 +45,15 @@ class LoginActivity : AppCompatActivity() {
 
     private fun initViewModel() {
         val api = BackendClient.api(br.com.becaeveris.library.interfaces.LoginAPI::class.java)
-        val repository = LoginRepository(api)
+        val repository = br.com.becaeveris.library.repository.LoginRepository(api)
 
         viewModel = ViewModelProvider(
             this,
-            LoginViewModelFactory(
+            br.com.becaeveris.library.viewmodel.LoginViewModelFactory(
                 this,
                 repository
             )
-        ).get(LoginViewModel::class.java)
+        ).get(br.com.becaeveris.library.viewmodel.LoginViewModel::class.java)
     }
 
     private fun initEventsObservers() {
@@ -99,7 +90,11 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
-        this.etPassword.addTextChangedListener(LoginTextWatcher(this.etPassword))
+        this.etPassword.addTextChangedListener(
+            br.com.becaeveris.library.textwatcher.LoginTextWatcher(
+                this.etPassword
+            )
+        )
 
         this.clLoadingBackground.setOnClickListener {
             // Keep it to make everything unclickable while loading

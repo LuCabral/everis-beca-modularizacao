@@ -1,19 +1,12 @@
-package com.niemietz.everis.beca.modularizacao.login.ui.viewmodel
+package br.com.becaeveris.library.viewmodel
 
 import android.content.Context
 import android.provider.Settings.Secure
+import android.se.omapi.Session
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.google.gson.Gson
-import com.niemietz.everis.beca.core.InternetChecker.isConnected2Internet
-import com.niemietz.everis.beca.core.Session
 import br.com.becaeveris.library.events.LoginEvents
-import br.com.becaeveris.library.events.LoginInteractor
-import br.com.becaeveris.library.states.LoginStates
-import com.niemietz.everis.beca.modularizacao.login.repository.LoginRepository
-import br.com.becaeveris.library.model.AuthenticateRequest
-import br.com.becaeveris.library.model.AuthenticateResponseContent
-import br.com.becaeveris.library.model.GETSessionRequest
+import com.google.gson.Gson
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -23,7 +16,7 @@ import kotlin.coroutines.CoroutineContext
 
 class LoginViewModel(
     private val context: Context,
-    private var repository: LoginRepository,
+    private var repository: br.com.becaeveris.library.repository.LoginRepository,
     private val checkInternetConnection: Boolean = true
 ): ViewModel() {
     private val job: Job = Job()
@@ -70,9 +63,13 @@ class LoginViewModel(
         }
     }
 
+    private fun isConnected2Internet(context: Context): Boolean {
+
+    }
+
     private fun authenticate(password: String) {
         if (isConnected2Internet(context)) {
-            events.value = br.com.becaeveris.library.events.LoginEvents.StartLoading
+            events.value = LoginEvents.StartLoading
 
             CoroutineScope(currentJob).launch {
                 try {

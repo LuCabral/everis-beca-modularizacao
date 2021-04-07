@@ -1,4 +1,4 @@
-package com.niemietz.everis.beca.core
+package br.com.becaeveris.library.constants
 
 import okhttp3.OkHttpClient
 import okhttp3.Request
