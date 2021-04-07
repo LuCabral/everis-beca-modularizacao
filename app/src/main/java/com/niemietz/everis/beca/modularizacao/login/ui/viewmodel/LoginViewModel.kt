@@ -9,7 +9,7 @@ import com.niemietz.everis.beca.core.InternetChecker.isConnected2Internet
 import com.niemietz.everis.beca.core.Session
 import br.com.becaeveris.library.events.LoginEvents
 import br.com.becaeveris.library.events.LoginInteractor
-import com.niemietz.everis.beca.modularizacao.login.states.LoginStates
+import br.com.becaeveris.library.states.LoginStates
 import com.niemietz.everis.beca.modularizacao.login.repository.LoginRepository
 import br.com.becaeveris.library.model.AuthenticateRequest
 import br.com.becaeveris.library.model.AuthenticateResponseContent
@@ -30,7 +30,7 @@ class LoginViewModel(
     private val currentJob: CoroutineContext =
         Dispatchers.Main + job
     val events = MutableLiveData<br.com.becaeveris.library.events.LoginEvents>()
-    val states = MutableLiveData<LoginStates>()
+    val states = MutableLiveData<br.com.becaeveris.library.states.LoginStates>()
 
     fun interact(interaction: br.com.becaeveris.library.events.LoginInteractor) {
         when (interaction) {
@@ -58,11 +58,11 @@ class LoginViewModel(
 
                     setCoreSession(response.sessionId)
 
-                    states.value = LoginStates.GetSessionResult(
+                    states.value = br.com.becaeveris.library.states.LoginStates.GetSessionResult(
                         response.keyboard
                     )
                 } catch (ex: Exception) {
-                    states.value = LoginStates.GetSessionError(ex)
+                    states.value = br.com.becaeveris.library.states.LoginStates.GetSessionError(ex)
                 }
             }
         } else {
@@ -88,14 +88,14 @@ class LoginViewModel(
 
                         setCoreUserContent(response.content)
 
-                        states.value = LoginStates.AuthenticateResult(
+                        states.value = br.com.becaeveris.library.states.LoginStates.AuthenticateResult(
                             response.result
                         )
                     } ?: run {
                         events.value = br.com.becaeveris.library.events.LoginEvents.NoSession
                     }
                 } catch (ex: Exception) {
-                    states.value = LoginStates.GetSessionError(ex)
+                    states.value = br.com.becaeveris.library.states.LoginStates.GetSessionError(ex)
                 }
             }
         } else {
