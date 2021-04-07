@@ -1,4 +1,4 @@
-package com.niemietz.everis.beca.core.com.niemietz.everis.beca.modularizacao.login.constants
+package br.com.becaeveris.library.constants
 
 object LoginConstants {
     const val EXTRA_RESULT_KEY = "result"

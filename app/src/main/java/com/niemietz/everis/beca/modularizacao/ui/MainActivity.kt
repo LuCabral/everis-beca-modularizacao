@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
-import com.niemietz.everis.beca.core.com.niemietz.everis.beca.modularizacao.login.constants.LoginConstants
+import br.com.becaeveris.library.constants.LoginConstants
 import com.niemietz.everis.beca.modularizacao.BuildConfig
 import com.niemietz.everis.beca.modularizacao.R
 import com.niemietz.everis.beca.modularizacao.login.ui.LoginActivity
@@ -31,14 +31,14 @@ class MainActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (requestCode == LOGIN_REQUEST_CODE && resultCode == LoginConstants.LOGIN_RESULT_CODE) {
-            val loginOk = data?.extras?.getBoolean(LoginConstants.EXTRA_RESULT_KEY)
+        if (requestCode == LOGIN_REQUEST_CODE && resultCode == br.com.becaeveris.library.constants.LoginConstants.LOGIN_RESULT_CODE) {
+            val loginOk = data?.extras?.getBoolean(br.com.becaeveris.library.constants.LoginConstants.EXTRA_RESULT_KEY)
             if (loginOk == true) {
                 val loginOkIntent = Intent(this, LoginOkActivity::class.java)
                 startActivity(loginOkIntent)
             } else {
                 onError(
-                    data?.extras?.getString(LoginConstants.EXTRA_ERROR_KEY) ?: UNKNOWN_LOGIN_ERROR
+                    data?.extras?.getString(br.com.becaeveris.library.constants.LoginConstants.EXTRA_ERROR_KEY) ?: UNKNOWN_LOGIN_ERROR
                 )
             }
         }
