@@ -1,28 +1,27 @@
-package br.com.becaeveris.library.login.ui
+package br.com.becaeveris.library.login.ui.viewmodel
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.Group
 import androidx.lifecycle.ViewModelProvider
+import br.com.becaeveris.library.R
+import br.com.becaeveris.library.login.events.LoginEvents
+import br.com.becaeveris.library.login.events.LoginInteractor
+import br.com.becaeveris.library.login.interfaces.LoginAPI
+import br.com.becaeveris.library.login.model.KeyboardItem
+import br.com.becaeveris.library.login.repository.LoginRepository
+import br.com.becaeveris.library.login.states.LoginStates
 import com.niemietz.everis.beca.core.BackendClient
 import com.niemietz.everis.beca.core.com.niemietz.everis.beca.modularizacao.login.constants.LoginConstants.EXTRA_ERROR_KEY
 import com.niemietz.everis.beca.core.com.niemietz.everis.beca.modularizacao.login.constants.LoginConstants.EXTRA_RESULT_KEY
 import com.niemietz.everis.beca.core.com.niemietz.everis.beca.modularizacao.login.constants.LoginConstants.LOGIN_RESULT_CODE
 import com.niemietz.everis.beca.core.com.niemietz.everis.beca.modularizacao.login.textwatcher.LoginTextWatcher
-import br.com.becaeveris.library.login.events.LoginEvents
-import br.com.becaeveris.library.login.events.LoginInteractor
-import br.com.becaeveris.library.login.model.KeyboardItem
-import br.com.becaeveris.library.login.states.LoginStates
-import com.niemietz.everis.beca.modularizacao.R
-import br.com.becaeveris.library.login.interfaces.LoginAPI
-import br.com.becaeveris.library.login.repository.LoginRepository
-import br.com.becaeveris.library.login.ui.viewmodel.LoginViewModel
-import br.com.becaeveris.library.login.ui.viewmodel.LoginViewModelFactory
+import java.util.*
 
 class LoginActivity : AppCompatActivity() {
     private val etPassword: AppCompatEditText by lazy { findViewById(R.id.et_password) }

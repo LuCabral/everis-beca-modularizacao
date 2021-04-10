@@ -1,15 +1,14 @@
 package com.niemietz.everis.beca.modularizacao.ui
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
+import com.niemietz.everis.beca.core.BuildConfig
 import com.niemietz.everis.beca.core.com.niemietz.everis.beca.modularizacao.login.constants.LoginConstants
-import com.niemietz.everis.beca.modularizacao.BuildConfig
 import com.niemietz.everis.beca.modularizacao.R
-import br.com.becaeveris.library.login.ui.LoginActivity
 
 class MainActivity : AppCompatActivity() {
     private val btLogin: AppCompatButton by lazy { findViewById(R.id.bt_login) }
@@ -23,7 +22,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setListener() {
         btLogin.setOnClickListener {
-            val loginIntent = Intent(this, LoginActivity::class.java)
+            val loginIntent = Intent(this, LoginOkActivity::class.java)
             startActivityForResult(loginIntent, LOGIN_REQUEST_CODE)
         }
     }

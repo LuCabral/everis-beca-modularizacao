@@ -11,3 +11,5 @@ data class AuthenticateRequest (
     @SerializedName("password")
     val password: String
 ): Parcelable
+
+
